@@ -1,7 +1,4 @@
 import os
-from dotenv import load_dotenv
-
-load_dotenv(os.path.expanduser("~/file-agent/.env"))
 
 SANDBOX_DIR = os.path.realpath(os.path.expanduser("~/file-agent/sandbox"))
 

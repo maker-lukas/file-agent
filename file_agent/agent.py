@@ -42,6 +42,9 @@ Red = "\033[91m"
 Blue = "\033[94m"
 Reset = "\033[0m"
 
+DEFAULT_BASE_URL = "https://ai.hackclub.com/proxy/v1"
+DEFAULT_MODEL = "qwen/qwen3-32b"
+
 api_key = os.environ.get("OPENAI_API_KEY")
 if not api_key:
     print(f"{Red}Error:{Reset} OPENAI_API_KEY not set. Create ~/.file-agent.env with your API key.")

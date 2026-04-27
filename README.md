@@ -7,6 +7,14 @@ An ai file organizer that can create and move files around!
 
 I made this project to play around with ai agents and instructions.txt which I think are pretty interesting and I just wanted to try it out.
 
+## VIDEO DEMO
+
+**Click on the button to watch the DEMO its not a broken link PyPI does not support video previews! ∨∨∨∨**
+
+also sorry if i'm a bit stutery i do that sometimes :(
+
+https://cdn.hackclub.com/019dd072-94c3-7175-b43d-b1520c7d277b/file_agent_demo.mp4
+
 ### Install
 
 ```bash
