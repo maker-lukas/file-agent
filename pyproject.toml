@@ -3,8 +3,8 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "file-agent"
-version = "0.1.0"
+name = "file-agent-ai"
+version = "1.2"
 description = "An AI-powered file organizer that automatically organizes files in a folder"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -40,4 +40,4 @@ Homepage = "https://github.com/yourusername/file-agent"
 find = {include = ["file_agent*"]}
 
 [tool.setuptools.package-data]
-file_agent = ["instructions.txt"]
+file_agent = ["instructions.txt", "*.png"]
