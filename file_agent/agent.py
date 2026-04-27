@@ -8,14 +8,30 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from openai import OpenAI
 
-load_dotenv(os.path.expanduser("~/.file-agent.env"))
+load_dotenv(os.path.expanduser("~/file-agent/.env"))
 
-LOG_FILE = os.path.expanduser("~/file-agent/log.txt")
+APP_DIR = os.path.expanduser("~/file-agent")
+SANDBOX_DIR = os.path.join(APP_DIR, "sandbox")
+LOG_FILE = os.path.join(APP_DIR, "log.txt")
+ENV_FILE = os.path.join(APP_DIR, ".env")
 
-DEFAULT_BASE_URL = "https://ai.hackclub.com/proxy/v1"
-DEFAULT_MODEL = "qwen/qwen3-32b"
+os.makedirs(APP_DIR, exist_ok=True)
+os.makedirs(SANDBOX_DIR, exist_ok=True)
+
+if not os.path.exists(ENV_FILE):
+    with open(ENV_FILE, "w") as f:
+        f.write("""OPENAI_API_KEY=your-api-key-here          # get from ai.hackclub.com Keys tab
+OPENAI_BASE_URL=https://ai.hackclub.com/proxy/v1
+MODEL=qwen/qwen3-32b                  # model from the Models tab
+""")
+    print(f"{Yellow}Created config at {ENV_FILE}{Reset}")
+    print(f"{Yellow}Add your API key and run again!{Reset}")
+    exit(0)
 
 def log_to_file(msg):
+    log_dir = os.path.dirname(LOG_FILE)
+    if log_dir:
+        os.makedirs(log_dir, exist_ok=True)
     with open(LOG_FILE, "a") as f:
         f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}\n")
 
@@ -42,6 +58,7 @@ from importlib.resources import files as pkg_files
 
 from file_agent.tools import list_dir, create_file, create_folder, delete, move
 from file_agent.sandbox import SANDBOX_DIR
+os.makedirs(SANDBOX_DIR, exist_ok=True)
 
 system_prompt = pkg_files("file_agent").joinpath("instructions.txt").read_text()
 
