@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "file-agent"
+version = "0.1.0"
+description = "An AI-powered file organizer that automatically organizes files in a folder"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "you@example.com"}
+]
+keywords = ["ai", "file-organizer", "automation", "openai"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "openai",
+    "watchdog",
+    "python-dotenv",
+]
+
+[project.scripts]
+file-agent = "file_agent.agent:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/file-agent"
+
+[tool.setuptools.packages]
+find = {include = ["file_agent*"]}
+
+[tool.setuptools.package-data]
+file_agent = ["instructions.txt"]
