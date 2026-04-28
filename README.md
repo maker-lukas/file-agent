@@ -1,9 +1,10 @@
-## File Agent
+## File Agent or NAGFS (Not A Generic File Sorter)
 
 ![file_agent](https://cdn.hackclub.com/019dd019-5fa2-7842-a988-0e93b7bcc96a/file_agent.png)
 
 
-An ai file organizer that can create and move files around!
+An ai file organizer that can create folders and move files around! Also its not a generic file sorter the ai decides where files should go not hardcoded
+
 
 I made this project to play around with ai agents and instructions.txt which I think are pretty interesting and I just wanted to try it out.
 
