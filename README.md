@@ -18,7 +18,7 @@ https://cdn.hackclub.com/019dd072-94c3-7175-b43d-b1520c7d277b/file_agent_demo.mp
 ### Install
 
 ```bash
-pip install file-agent
+pip install file-agent-ai
 ```
 
 ### Config
@@ -27,12 +27,13 @@ pip install file-agent
 2. Go to the Models tab and pick a model (Qwen3 32B works well)
 3. Go to the Keys tab and create a new API key
 4. Copy the key
-5. Create `~/.file-agent.env` (see .env.example):
+5. Create `~/file-agent/.env` (see .env.example):
 ```
 OPENAI_API_KEY=your-key-here          # get from ai.hackclub.com Keys tab
 OPENAI_BASE_URL=https://ai.hackclub.com/proxy/v1
 MODEL=qwen/qwen3-32b                  # model from the Models tab
 ```
+**note:** remove comments if you copy from above.
 
 ### Usage
 

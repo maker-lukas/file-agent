@@ -20,20 +20,13 @@ os.makedirs(SANDBOX_DIR, exist_ok=True)
 
 if not os.path.exists(ENV_FILE):
     with open(ENV_FILE, "w") as f:
-        f.write("""OPENAI_API_KEY=your-api-key-here          # get from ai.hackclub.com Keys tab
+        f.write("""OPENAI_API_KEY=your-api-key-here
 OPENAI_BASE_URL=https://ai.hackclub.com/proxy/v1
-MODEL=qwen/qwen3-32b                  # model from the Models tab
+MODEL=qwen/qwen3-32b
 """)
-    print(f"{Yellow}Created config at {ENV_FILE}{Reset}")
-    print(f"{Yellow}Add your API key and run again!{Reset}")
+    print("Created config at " + ENV_FILE)
+    print("Add your API key and run again!")
     exit(0)
-
-def log_to_file(msg):
-    log_dir = os.path.dirname(LOG_FILE)
-    if log_dir:
-        os.makedirs(log_dir, exist_ok=True)
-    with open(LOG_FILE, "a") as f:
-        f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}\n")
 
 Cyan = "\033[96m"
 Green = "\033[92m"
@@ -45,9 +38,13 @@ Reset = "\033[0m"
 DEFAULT_BASE_URL = "https://ai.hackclub.com/proxy/v1"
 DEFAULT_MODEL = "qwen/qwen3-32b"
 
+def log_to_file(msg):
+    with open(LOG_FILE, "a") as f:
+        f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}\n")
+
 api_key = os.environ.get("OPENAI_API_KEY")
 if not api_key:
-    print(f"{Red}Error:{Reset} OPENAI_API_KEY not set. Create ~/.file-agent.env with your API key.")
+    print(f"{Red}Error:{Reset} OPENAI_API_KEY not set. Create ~/file-agent/.env with your API key.")
     print(f"Get one at: https://ai.hackclub.com")
     exit(1)
 
@@ -61,7 +58,6 @@ from importlib.resources import files as pkg_files
 
 from file_agent.tools import list_dir, create_file, create_folder, delete, move
 from file_agent.sandbox import SANDBOX_DIR
-os.makedirs(SANDBOX_DIR, exist_ok=True)
 
 system_prompt = pkg_files("file_agent").joinpath("instructions.txt").read_text()
 
@@ -181,12 +177,10 @@ def main():
     print(f"\n{Green}File agent started{Reset}")
     print(f"Watching: {Blue}{SANDBOX_DIR}{Reset}")
     print(f"{Yellow}Press Ctrl+C to stop{Reset}\n")
-    log_to_file("File agent started")
 
     organize()
 
     print(f"\n{Green}Watching for changes...{Reset}\n")
-    log_to_file("Watching for changes...")
 
     handler = SandboxHandler()
     observer = Observer()
